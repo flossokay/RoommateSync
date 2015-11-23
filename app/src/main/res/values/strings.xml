@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">RoommateSync</string>
+    <string name="title_activity_news_feed">NewsFeed</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="navigation_drawer_news_feed">News Feed</string>
+    <string name="navigation_drawer_money_management">Money Management</string>
+    <string name="navigation_drawer_chores_management">Chores Management</string>
+    <string name="navigation_drawer_house_hold_needs">Household Needs</string>
+    <string name="navigation_drawer_house_details">House Details</string>
+
+    <string name="action_settings">Settings</string>
+</resources>

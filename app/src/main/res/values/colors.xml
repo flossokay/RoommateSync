@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorDividerGeneric">#EDF55d</color>
+
+    <color name="navdrawer_item">#3A6EC3</color>
+    <color name="navdrawer_text">@android:color/white</color>
+    <color name="navdrawer_item_pressed">#4f5157</color>
+</resources>

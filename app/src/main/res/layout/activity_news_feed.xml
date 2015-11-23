@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.roommatesync.NewsFeed">
+
+    <include android:id="@+id/appbar_news" layout="@layout/appbar_generic" />
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_below="@id/appbar_news"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:openDrawer="start"
+        >
+
+        <!-- insert content here -->
+
+
+        <LinearLayout
+            android:id="@+id/linearlayout_left_drawer"
+            android:orientation="vertical"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            >
+
+
+            <TextView
+                style="@style/AppTheme.NavBarItems"
+                android:drawableLeft="@mipmap/ic_action_chat"
+                android:text="@string/navigation_drawer_news_feed"
+                />
+
+            <include layout="@layout/divider_generic"/>
+
+            <TextView
+                style="@style/AppTheme.NavBarItems"
+                android:drawableLeft="@mipmap/ic_action_import_export"
+                android:text="@string/navigation_drawer_money_management"/>
+
+            <include layout="@layout/divider_generic"/>
+
+            <TextView
+                style="@style/AppTheme.NavBarItems"
+                android:drawableLeft="@mipmap/ic_action_accept"
+                android:text="@string/navigation_drawer_chores_management"/>
+
+            <include layout="@layout/divider_generic"/>
+
+            <TextView
+                style="@style/AppTheme.NavBarItems"
+                android:drawableLeft="@mipmap/ic_action_add_to_queue"
+                android:text="@string/navigation_drawer_house_hold_needs"/>
+
+            <include layout="@layout/divider_generic"/>
+
+            <TextView
+                style="@style/AppTheme.NavBarItems"
+                android:text="@string/navigation_drawer_house_details"
+                android:drawableLeft="@mipmap/ic_action_group"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.DrawerLayout>
+
+</RelativeLayout>
