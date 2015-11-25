@@ -8,9 +8,10 @@
 
     <include android:id="@+id/appbar_news" layout="@layout/appbar_generic" />
 
+
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
-        android:layout_below="@id/appbar_news"
+        android:layout_below="@+id/appbar_news"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:openDrawer="start"
@@ -25,45 +26,67 @@
             android:layout_width="250dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
+            android:background="@color/navdrawer_background"
             >
 
 
-            <TextView
+            <Button
+                android:id="@+id/button_newsfeed"
                 style="@style/AppTheme.NavBarItems"
                 android:drawableLeft="@mipmap/ic_action_chat"
-                android:text="@string/navigation_drawer_news_feed"
+                android:text="@string/navdrawer_news_feed"
+                android:onClick="newsFeedClick"
                 />
 
             <include layout="@layout/divider_generic"/>
 
-            <TextView
+            <Button
+                android:id="@+id/button_money_management"
                 style="@style/AppTheme.NavBarItems"
                 android:drawableLeft="@mipmap/ic_action_import_export"
-                android:text="@string/navigation_drawer_money_management"/>
+                android:text="@string/navdrawer_money_management"
+                android:onClick="moneyManageManagementClick"
+                />
 
             <include layout="@layout/divider_generic"/>
 
-            <TextView
+            <Button
+                android:id="@+id/button_chore_management"
                 style="@style/AppTheme.NavBarItems"
                 android:drawableLeft="@mipmap/ic_action_accept"
-                android:text="@string/navigation_drawer_chores_management"/>
+                android:text="@string/navdrawer_chores_management"
+                android:onClick="choreManagementClick"/>
 
             <include layout="@layout/divider_generic"/>
 
-            <TextView
+            <Button
+                android:id="@+id/button_household_needs"
                 style="@style/AppTheme.NavBarItems"
                 android:drawableLeft="@mipmap/ic_action_add_to_queue"
-                android:text="@string/navigation_drawer_house_hold_needs"/>
+                android:text="@string/navdrawer_house_hold_needs"
+                android:onClick="houseHoldNeedsClick"/>
 
             <include layout="@layout/divider_generic"/>
 
-            <TextView
+            <Button
+                android:id="@+id/button_house_details"
                 style="@style/AppTheme.NavBarItems"
-                android:text="@string/navigation_drawer_house_details"
-                android:drawableLeft="@mipmap/ic_action_group"/>
+                android:text="@string/navdrawer_house_details"
+                android:drawableLeft="@mipmap/ic_action_group"
+                android:onClick="houseDetailsClick"/>
+
+            <include layout="@layout/divider_generic"/>
+
+            <Button
+                android:id="@+id/button_settings"
+                style="@style/AppTheme.NavBarItems"
+                android:text="@string/navdrawer_settings"
+                android:drawableLeft="@android:drawable/ic_menu_preferences"
+                android:onClick="settingsClick"/>
+
+            <include layout="@layout/divider_generic"/>
 
         </LinearLayout>
 
     </android.support.v4.widget.DrawerLayout>
-
 </RelativeLayout>
