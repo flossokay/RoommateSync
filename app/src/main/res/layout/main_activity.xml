@@ -4,7 +4,7 @@
     android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.roommatesync.NewsFeed">
+    tools:context="com.roommatesync.MainActivity">
 
     <include android:id="@+id/appbar_news" layout="@layout/appbar_generic" />
 
@@ -18,6 +18,10 @@
         >
 
         <!-- insert content here -->
+        <RelativeLayout
+            android:id="@+id/drawer_layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 
         <LinearLayout
@@ -27,12 +31,14 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@color/navdrawer_background"
+            android:clickable="true"
             >
 
 
             <Button
                 android:id="@+id/button_newsfeed"
                 style="@style/AppTheme.NavBarItems"
+                android:drawableStart="@mipmap/ic_action_chat"
                 android:drawableLeft="@mipmap/ic_action_chat"
                 android:text="@string/navdrawer_news_feed"
                 android:onClick="newsFeedClick"
@@ -43,6 +49,7 @@
             <Button
                 android:id="@+id/button_money_management"
                 style="@style/AppTheme.NavBarItems"
+                android:drawableStart="@mipmap/ic_action_import_export"
                 android:drawableLeft="@mipmap/ic_action_import_export"
                 android:text="@string/navdrawer_money_management"
                 android:onClick="moneyManageManagementClick"
@@ -53,6 +60,7 @@
             <Button
                 android:id="@+id/button_chore_management"
                 style="@style/AppTheme.NavBarItems"
+                android:drawableStart="@mipmap/ic_action_accept"
                 android:drawableLeft="@mipmap/ic_action_accept"
                 android:text="@string/navdrawer_chores_management"
                 android:onClick="choreManagementClick"/>
@@ -62,6 +70,7 @@
             <Button
                 android:id="@+id/button_household_needs"
                 style="@style/AppTheme.NavBarItems"
+                android:drawableStart="@mipmap/ic_action_add_to_queue"
                 android:drawableLeft="@mipmap/ic_action_add_to_queue"
                 android:text="@string/navdrawer_house_hold_needs"
                 android:onClick="houseHoldNeedsClick"/>
@@ -81,11 +90,11 @@
                 android:id="@+id/button_settings"
                 style="@style/AppTheme.NavBarItems"
                 android:text="@string/navdrawer_settings"
+                android:drawableStart="@android:drawable/ic_menu_preferences"
                 android:drawableLeft="@android:drawable/ic_menu_preferences"
                 android:onClick="settingsClick"/>
 
             <include layout="@layout/divider_generic"/>
-
         </LinearLayout>
 
     </android.support.v4.widget.DrawerLayout>

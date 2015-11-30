@@ -9,6 +9,7 @@
     <color name="actionbar_color">#3A6EC3</color>
 
     <color name="divider_generic">#EDF55d</color>
+    <color name="divider_fragment_listview">#3A6EC3</color>
 
     <color name="navdrawer_item">#3A6EC3</color>
     <color name="navdrawer_text">@android:color/white</color>

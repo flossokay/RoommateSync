@@ -1,38 +1,44 @@
 package com.roommatesync;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import roboguice.activity.RoboActionBarActivity;
+import roboguice.inject.InjectView;
 
-public class NewsFeed extends AppCompatActivity {
+public class MainActivity extends RoboActionBarActivity {
 
-    private Button[] navbarButtonsArr = new Button[6];
+    private final Button[] navbarButtonsArr;
+    private FragmentManager fragmentManager;
 
-    @Bind(R.id.button_newsfeed) Button newsfeedButton;
-    @Bind(R.id.button_money_management) Button moneyManagementButton;
-    @Bind(R.id.button_chore_management) Button choreMangementButton;
-    @Bind(R.id.button_household_needs) Button householdNeedsButton;
-    @Bind(R.id.button_house_details) Button houseDetailsButton;
-    @Bind(R.id.button_settings) Button settingsButton;
+    @InjectView(R.id.button_newsfeed) private Button newsfeedButton;
+    @InjectView(R.id.button_money_management) private Button moneyManagementButton;
+    @InjectView(R.id.button_chore_management) private Button choreMangementButton;
+    @InjectView(R.id.button_household_needs) private Button householdNeedsButton;
+    @InjectView(R.id.button_house_details) private Button houseDetailsButton;
+    @InjectView(R.id.button_settings) private Button settingsButton;
 
-    @Bind(R.id.drawer_layout) DrawerLayout drawer;
-    @Bind(R.id.toolbar) Toolbar toolbar;
+    @InjectView(R.id.drawer_layout) private DrawerLayout drawer;
+    @InjectView(R.id.toolbar) private Toolbar toolbar;
+
+    public MainActivity() {
+        navbarButtonsArr = new Button[6];
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news_feed);
-        ButterKnife.bind(this);
+        setContentView(R.layout.main_activity);
         //navdrawer set up
         addNavbarButtonsToArr();
 
@@ -42,13 +48,21 @@ public class NewsFeed extends AppCompatActivity {
                 this, drawer, toolbar, R.string.navdrawer_open, R.string.navdrawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+        fragmentManager = getFragmentManager();
+
+        //set up the first activity
+        newsFeedClick(newsfeedButton);
     }
 
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        } else if(fragmentManager.getBackStackEntryCount() != 1){
+            //since we always want a fragment showing the condition is != 1 rather than != 0
+            fragmentManager.popBackStack();
+        }else {
             super.onBackPressed();
         }
     }
@@ -97,12 +111,20 @@ public class NewsFeed extends AppCompatActivity {
             if(selectedView.getId() == v.getId()) {
                 v.setBackgroundResource(R.color.navdrawer_item_pressed);
             }else {
-                //having state persisted is in android
+                //having state persisted is harder in android
                 //thus we'll just iterate through the whole array for now.
+                //Found a solution but I don't like it.  (feels too hacky)
                 //see http://stackoverflow.com/questions/4747311/how-can-i-keep-one-button-as-pressed-after-click-on-it
                 v.setBackgroundResource(R.drawable.selector_navdrawer_items);
             }
         }
+    }
+
+    private void showFragmentOnMainView(Fragment fragment){
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(R.id.drawer_layout_content,fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -113,6 +135,7 @@ public class NewsFeed extends AppCompatActivity {
     public void newsFeedClick(View view) {
         drawer.closeDrawer(GravityCompat.START);
         setSelectedNavDrawerView(view);
+        showFragmentOnMainView(new NewsfeedFragment());
     }
 
     public void moneyManageManagementClick(View view) {
@@ -139,7 +162,5 @@ public class NewsFeed extends AppCompatActivity {
         drawer.closeDrawer(GravityCompat.START);
         setSelectedNavDrawerView(view);
     }
-
-
 
 }
