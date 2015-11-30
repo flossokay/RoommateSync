@@ -7,9 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import roboguice.fragment.RoboFragment;
+import roboguice.inject.InjectView;
+
 //http://192.168.1.133/newsfeed.json
 
-public class NewsfeedFragment extends Fragment {
+public class NewsfeedFragment extends RoboFragment {
+
+    @InjectView(R.id.post_list) private ListView lView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -21,7 +26,6 @@ public class NewsfeedFragment extends Fragment {
     public void onResume(){
         super.onResume();
         NewsfeedAdapter newsfeedAdapter = new NewsfeedAdapter(getActivity());
-        ListView lView = (ListView) getActivity().findViewById(R.id.post_list);
         lView.setAdapter(newsfeedAdapter);
         newsfeedAdapter.notifyDataSetChanged();
     }
